@@ -1,11 +1,12 @@
-# ember-asp-core-integration
-A basic project that serves an Ember application with an ASP Core back-end.
+# EmberJS & ASP Core Integration
+A basic project that serves an Ember application with an ASP Core backend.
 
 # Description
 
-The project can be used as scaffolding / inspiration on how to integrate a `ASP Core` back-end with an `EmberJS` front-end.
+The project can be used as scaffolding / inspiration on how to integrate a `ASP Core` back-end with an `EmberJS` frontend.
 
-It is built in such a way that both the `front-end` and `back-end` projects can evolve in separate ways but can be deployed together.
+It is built in such a way that both the `frontend` and `backend` projects can evolve in separate ways but can be deployed together. The backend project will serve its
+`views` and the `Ember` project will be served as static files.
 
 The best way to continue development is to run the 2 projects separately, each with it's own runner. This way you can enjoy Ember's `auto-reload` (and maybe `dotnet watch` too).
 
@@ -33,13 +34,13 @@ The most important parts of the integration from a backend perspective are found
  - `project.json`
  - `Startup.cs`
 
- ## Development environment
+## Development environment
 
-Inside the `project.json` file, both the `buildOptions` and  `publishOptions` sections copy the contents of the `frontend` project to the output folder.
+Inside the `project.json` file, the `buildOptions` section copies the contents of the `frontend` project to the output folder.
 
 ```json
 "buildOptions": {
-  [...]
+  ...
   "copyToOutput": {
     "mappings": {
       "dist/": {
@@ -72,15 +73,19 @@ The following instructs the `publish` process to copy the `Ember/dist` files ins
 
 ```json
 "publishOptions": {
-  [...]
+  ...
   "mappings": {
     "wwwroot/": "../ember-asp-test-front-end/dist/**/*"
   }
 }
 ```
 
+Because the Ember project will be served by the ASP backend, there's no need to proxy Ember Data calls in `production`.
+
+> Important: before running `dotnet publish` make sure to run `ember build --production` on the frontend project to populate the `dist` folder.
+
 Note:
  - the ASP Core project reloads the Ember `dist` contents only on `Build`. This is why it's recommended to run/develop the Ember project separately.
  - the Ember's project `location` type is set to `hash` to avoid routing conflicts between frontend and backend
- - the `frontend` project must be alongside the `backend` project because we need to get to it in a relative manner. Make sure to rename the `../ember-asp-test-front-end`
+ - regarding project folders, the frontend must be alongside the backend project because we need to get to it in a relative manner. Make sure to rename the `../ember-asp-test-front-end`
  paths inside the `project.json` file if your `frontend` solution has a different name or path.
