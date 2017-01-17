@@ -7,8 +7,6 @@ The project can be used as scaffolding / inspiration on how to integrate a `ASP 
 
 It is built in such a way that both the `front-end` and `back-end` projects can evolve in separate ways but can be deployed together.
 
-# Development Environment
-
 The best way to continue development is to run the 2 projects separately, each with it's own runner. This way you can enjoy Ember's `auto-reload` (and maybe `dotnet watch` too).
 
 ## The `Ember` project
