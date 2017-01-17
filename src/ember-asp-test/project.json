@@ -75,7 +75,7 @@
     "copyToOutput": {
       "mappings": {
         "dist/": {
-          "include": [ "../ember-asp-test-front-end/dist/**/*", "wwwroot/**/*" ] 
+          "include": [ "../ember-asp-test-front-end/dist/**/*", "wwwroot/**/*" ]
         }
       }
     }

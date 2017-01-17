@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ember_asp_test.Controllers
 {
@@ -8,18 +9,8 @@ namespace ember_asp_test.Controllers
     {
         public IActionResult Index()
         {
-            var location = System.Reflection.Assembly.GetEntryAssembly().Location;
-            var root = System.IO.Path.GetDirectoryName(location);
-            var file = Path.Combine(root, "dist", "index.html");
-
-            var content = System.IO.File.ReadAllBytes(file);
-            return File(content, "text/html");
+            return View();
         }
-
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
 
         public IActionResult About()
         {
